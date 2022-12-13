@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoria em TI</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            border-radius: 20px;
+        }
+
+        body {
+            background-color: rgb(171, 165, 165);
+        }
+
+        h2 {
+            background-color: rgb(114, 167, 210);
+            text-align: center;
+        }
+
+        article {
+            border: 5px rgb(114, 167, 210) groove;
+            padding: 20px;
+            margin: 15px;
+            margin-left: 420px;
+        }
+
+        article:hover {
+            border: 5px rgb(183, 224, 164) groove;
+            padding: 20px;
+            margin: 15px;
+            margin-left: 420px;
+        }
+
+        .imagemcentralizada {
+            text-align: center;
+            margin-left: 420px;
+        }
+
+        .botaozinhuh {
+            border: 5px rgb(183, 224, 164) solid;
+            padding: 10px;
+            width: 350px;
+            flex-direction: row;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .botaozinhuh:hover {
+            border: 5px rgb(114, 167, 210) solid;
+            flex-direction: row;
+            padding: 10px;
+            width: 350px;
+            background-color: rgb(205, 180, 113)
+        }
+
+        .ladinho {
+            position: fixed;
+            width: 400px;
+            height: 100vh;
+            text-align: center;
+            background-color: rgb(183, 224, 164);
+            padding-top: 10px;
+        }
+
+        .link {
+            display: inline;
+            padding: 12px;
+            margin: 35px;
+        }
+
+        .link2 {
+            display: inline;
+            padding: 12px;
+        }
+
+        .link:hover {
+            background-color: rgb(205, 180, 113);
+            color: rgb(183, 224, 164);
+        }
+
+        .link2:hover {
+            background-color: rgb(205, 180, 113);
+            color: rgb(183, 224, 164);
+        }
+
+        .dropdown {
+            width: 300px;
+            padding-left: 35px;
+        }
+
+        .dropdown-button {
+            background-color: rgb(114, 167, 210);
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            cursor: pointer;
+            width: 300px;
+        }
+
+        .dropdown-conteudo {
+            background-color: rgb(114, 167, 210);
+            height: 300px;
+            text-align: center;
+            display: none;
+            width: 300px;    
+        }
+
+        .dropdown:hover .dropdown-conteudo {
+            display: block;
+            position: absolute;
+        }
+
+        .dropdown-conteudo a {
+            display: block;
+        }
+
+        .menu {
+            padding-left: 420px;
+            background-color: rgb(114, 167, 210);
+            padding: 10px;
+            width: 350px;
+            display: flex;
+            flex-direction: row;
+            margin: 10px;
+            justify-content: center;
+        }
+
+        .menusuperior {
+            padding-left: 420px;
+            border-radius: 22px;
+            background-color: rgb(183, 224, 164);
+            padding: 10px;
+            display: flex;
+            height: 60px;
+            justify-content: space-between;
+            flex-direction: row;
+            margin-bottom: 20px;
+            border-radius: 0px;
+            padding-left: 400px;
+        }
+
+        .pagina {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .linksmenusuperior {
+            background-color: rgb(114, 167, 210);
+            height: 25px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div class="ladinho">
+        
+                
+                <h2 style="background-color: rgb(183, 224, 164); margin-bottom: 80px; margin-top: 10px;">Consultoria em carreiras de TI</h2>
+
+                
+        <div class="menu"> MENU LATERAL</div>
+
+        <div class="botaozinhuh">Home</div>
+        <div class="botaozinhuh">Sobre</div>
+        <div class="botaozinhuh">Contato</div>
+    </div>
+
+    <nav class="menusuperior">
+        <div class="linksmenusuperior">
+            <a href="" class="link2">Link 1</a>
+            <a href="" class="link2">Link 2</a>
+            <a href="" class="link2">Link 3</a>
+            <a href="" class="link2">Link 4</a>
+        </div>
+
+        <div class="dropdown">
+            <div class="dropdown-button">
+                Links relacionados
+            </div>
+
+            <div class="dropdown-conteudo">
+                <a href="" class="link">Link 5</a>
+                <a href="" class="link">Link 6</a>
+                <a href="" class="link">Link 7</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pagina">
+        <div class="imagemcentralizada">
+            <img style="width: 410px; height: 215px;" src="./assets/psiConsultoria.jpg">
+        </div>
+
+        <article>
+            <header>
+                <h2>Consultoria em carreiras de TI</h2>
+            </header>
+            <p>
+                A consultoria é um forte aliado para entender qual o melhor caminho para trilhar ao escolher e construir
+                uma
+                carreira em TI
+            </p>
+        </article>
+
+        <article>
+            <header>
+                <h2>Por que fazer consultoria em carreiras de TI?</h2>
+            </header>
+            <p>
+                A partir da consultoria, é possível saber com precisão que tecnologias, softwares e habilidades são
+                necessárias estudar e por onde procurar suas primeiras vagas
+            </p>
+        </article>
+
+        <article class="teste">
+            <header>
+                <h2>Como fazer consultoria em carreiras de TI?</h2>
+            </header>
+            <p>
+                A consultoria envolve testes psicológicos e uma conversa com o cliente, buscando encontrar
+                as habilidades naturais e preferências de trabalho dele. A partir dos resultos, são selecionadas duas
+                carreiras
+                em TI mais viáveis para o cliente.
+            </p>
+        </article>
+
+        <article class="teste">
+            <header>
+                <h2>Como fazer consultoria em carreiras de TI?</h2>
+            </header>
+            <p>
+                A consultoria envolve testes psicológicos e uma conversa com o cliente, buscando encontrar
+                as habilidades naturais e preferências de trabalho dele. A partir dos resultos, são selecionadas duas
+                carreiras
+                em TI mais viáveis para o cliente.
+            </p>
+        </article>
+
+        <article>
+            <header>
+                <h2>Por que fazer consultoria em carreiras de TI?</h2>
+            </header>
+            <p>
+                A partir da consultoria, é possível saber com precisão que tecnologias, softwares e habilidades são
+                necessárias estudar e por onde procurar suas primeiras vagas
+            </p>
+        </article>
+    </div>
+
+    <footer style="padding-left: 420px; text-align:center;">
+        <h6><b>Todos os direitos reservados</b></h6>
+    </footer>
+</body>
+
+</html>

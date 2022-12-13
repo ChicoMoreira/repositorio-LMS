@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bullbook</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .navsup {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            background-color: firebrick;
+            width: 100%;
+            top: 0px
+        }
+
+        .menulesq {
+            background-color: darkgoldenrod;
+            display: flex;
+            width: 0px;
+            overflow: hidden;
+            transition: width 500ms linear;
+        }
+
+        .menulesq.ativo {
+            height: 100vh;
+            width: 400px;
+            flex-shrink: 0;
+        }
+
+        .pagina {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+        }
+
+        .feed {
+            background-color: darkorange;
+            width: 100%;
+        }
+
+        .ladosnavsup {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            height: 100%;
+        }
+
+        .modaloverlay {
+            height: 0;
+            width: 0;
+            opacity: 0;
+            position: fixed;
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(46, 46, 46, 0.8);
+            top: 0;
+            left: 0;
+            transition: width 700ms, height 700ms, opacity 900ms;
+        }
+
+        .modaloverlay.ativo {
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+        }
+
+        .containermodal {
+            height: 450px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: tomato;
+        }
+
+        .fechar {
+            cursor: pointer;
+            padding-right: 10px;
+            padding: 10px;
+            color: white;
+            font-size: 30px;
+        }
+
+        .novamensagem {
+            font-size: 30px;
+            color: white;
+            padding-left: 10px;
+            display: flex;
+        }
+
+        .post {
+            width: 90%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .nome {
+            text-align: center
+        }
+
+        .modalnome {
+            width: 100%;
+            height: 10%;
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .botaohamb {
+            height: 33px;
+            width: 33px;
+            margin: 0px 5px;
+            border: 1px solid;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: goldenrod;
+        }
+
+        .listafeed {
+            height: 100%;
+            width: 100%;
+        }
+
+        .postar {
+            height: 33px;
+            width: 50px;
+            cursor: pointer;
+            border: 1px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: goldenrod;
+        }
+
+        .postagem {
+            border: 1px solid;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            margin: 30px 40px;
+        }
+
+        .postname {
+            width: 100%;
+            display: flex;
+            justify-content: baseline;
+            margin-bottom: 10px;
+        }
+
+        .msg {
+            background-color: brown;
+            width: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modalheader {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+            height: 20%;
+            background-color: firebrick;
+            align-items: center;
+
+        }
+
+        .modalcontent {
+            width: 100%;
+            height: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+
+        }
+
+        .modalfooter {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: firebrick;
+        }
+
+        .containerimgslider {
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-slider {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-slider .slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(46, 46, 46, 0.8);
+            color: white;
+            position: absolute;
+            transform: translate(500px, 0);
+        }
+
+        .image-slider {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .image-slider .slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            position: absolute;
+            transform: translate(500px, 0);
+        }
+
+        .image-slider .slide.active {
+            transform: translate(0, 0);
+        }
+
+        .image-slider .slide.meio-esquerda {
+            animation: meio_esquerda 500ms linear;
+            transform: translate(-500px, 0);
+        }
+
+        @keyframes meio_esquerda {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(-500px, 0);
+            }
+        }
+
+        .image-slider .slide.direita-meio {
+            animation: direita_meio 500ms linear;
+            transform: translate(0px, 0);
+        }
+
+
+        @keyframes direita_meio {
+            from {
+                transform: translate(500px, 0);
+            }
+
+            to {
+                transform: translate(0px, 0px);
+            }
+        }
+
+        .image-slider .slide.meio-direita {
+            animation: meio_direita 500ms linear;
+            transform: translate(500px, 0);
+        }
+
+        @keyframes meio_direita {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(500px, 0);
+            }
+        }
+
+        .image-slider .slide.esquerda-meio {
+            animation: esquerda-meio 500ms linear;
+            transform: translate(0, 0);
+        }
+
+        @keyframes esquerda-meio {
+            from {
+                transform: translate(-500px, 0);
+            }
+
+            to {
+                transform: translate(0px, 0);
+            }
+        }
+
+
+        .image-slider .seta-esquerda {
+            position: absolute;
+            left: 0;
+            top: calc(50% - 28px);
+            color: white;
+            font-size: 40px;
+            padding: 10px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .image-slider .seta-direita {
+            position: absolute;
+            right: 0;
+            padding: 10px;
+            top: calc(50% - 28px);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .image-slider .indicators {
+            display: flex;
+            justify-content: space-around;
+            width: 160px;
+            padding: 15px;
+        }
+
+        .image-slider .indicators .indicator {
+            background-color: rgb(167, 167, 167);
+            width: 40px;
+            height: 5px;
+        }
+
+        .image-slider .indicators .indicator.active {
+            background-color: white;
+        }
+
+        .image-slider .indicators {
+            position: absolute;
+            bottom: 0;
+            left: calc(50% - 95px);
+        }
+
+        .imagem {
+            height: 100%;
+        }
+
+        .nomepost {
+            text-align: center;
+        }
+
+        .postpost {
+            height: 80%;
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navsup">
+        <div class="ladosnavsup">
+            <div class="botaopostar">Bullbook</div>
+        </div>
+        <div class="ladosnavsup">
+            <div class="postar" id="postar">Postar</div>
+            <div class="botaohamb">
+                <div>-</div>
+                <div>-</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pagina">
+        <div class="menulesq">Menulateralesquerdo</div>
+        <div class="feed">
+            <div id="lista-feed">
+                <div class="postagem">
+                    <div class="postname">Victor</div>
+                    <div class="msg">Tudo bem?</div>
+                </div>
+                <div class="postagem">
+                    <div class="postname">Carlos</div>
+                    <div class="msg">Tá quente hoje!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="containerimgslider">
+        <div class="image-slider">
+            <div class="slide active">
+                <img class="imagem"
+                    src="data:image/jpeg;base64,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">
+            </div>
+            <div class="slide">
+                <img class="imagem"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/CH_Buck_and_Sons_Evita_Peron.jpg/800px-CH_Buck_and_Sons_Evita_Peron.jpg">
+            </div>
+            <div class="slide">
+                <img class="imagem"
+                    src="https://static.wixstatic.com/media/b6135a_2bda146c6d1242f783794d12a600989d~mv2_d_2372_1932_s_2.jpg/v1/fill/w_640,h_616,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/b6135a_2bda146c6d1242f783794d12a600989d~mv2_d_2372_1932_s_2.jpg">
+            </div>
+            <div class="slide">
+                <img class="imagem"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQDhyjgcbC9ylh7WBDewfXRTAoS79WZDkfQ63XrdH1s03yS7kOLsOBGs8yfT3mE7rNamk&usqp=CAU">>
+            </div>
+            <div class="slide">
+                <img class="imagem"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5v4NrahG6-8O_CeX0ASje-S3NLrRvVq5V3gwy8BRwOYtzRNE9xNg510oEbUX4EGk0Nlw&usqp=CAU">
+            </div>
+            <div class="seta-esquerda">&lt;</div>
+            <div class="seta-direita">&gt;</div>
+            <div class="indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modaloverlay">
+        <div class="containermodal">
+            <div class="modalheader">
+                <div class="novamensagem">Nova mensagem</div>
+                <span class="fechar" id="close">X</span>
+            </div>
+            <div class="modalnome">
+                <form action="">
+                    <input type="text" class="nomepost" placeholder="Insira seu nome">
+            </div>
+            <div class="modalcontent">
+                <input type="text" class="postpost" placeholder="Insira sua mensagem">
+            </div>
+            <div class="modalfooter">
+                <input type="submit" value="Submeter" class="enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+    <script>
+        let postar = document.querySelector("#postar")
+        let close = document.querySelector("#close")
+        let hamb = document.querySelector(".botaohamb")
+        let overlay = document.querySelector(".modaloverlay")
+        let menulesq = document.querySelector(".menulesq")
+
+        let lista_feed = document.querySelector("#lista-feed")
+        let input_nome = document.querySelector(".nomepost")
+        let input_msg = document.querySelector(".postpost")
+        let submit = document.querySelector(".enviar")
+
+        function adicionar_post(event) {
+            event.preventDefault();
+            let nome = input_nome.value;
+            let msg = input_msg.value;
+
+            let postagem = document.createElement("div");
+            postagem.classList.add('postagem')
+
+            let postagemnome = document.createElement("div");
+            postagemnome.classList.add('postname')
+            let nomenome = document.createTextNode(nome)
+            postagemnome.appendChild(nomenome)
+
+            let postagemmsg = document.createElement("div")
+            postagemmsg.classList.add('msg')
+            let msgmsg = document.createTextNode(msg)
+            postagemmsg.appendChild(msgmsg)
+
+            postagem.appendChild(postagemnome)
+            postagem.appendChild(postagemmsg)
+
+            lista_feed.appendChild(postagem)
+            abrir_fechar_modal()
+        }
+
+
+        function post_destaque(event) {
+            event.preventDefault();
+            console.log(lista_feed.firstElementChild)
+        }
+
+        submit.addEventListener("click", adicionar_post)
+
+        function abrir_fechar_modal() {
+            overlay.classList.toggle("ativo")
+        }
+
+        function abrir_fechar_menulesq() {
+            menulesq.classList.toggle("ativo")
+        }
+
+        postar.addEventListener("click", abrir_fechar_modal)
+        close.addEventListener("click", abrir_fechar_modal)
+        hamb.addEventListener("click", abrir_fechar_menulesq)
+
+
+        let slides = document.querySelectorAll(".image-slider .slide");
+        let seta_esquerda = document.querySelector(".image-slider .seta-esquerda");
+        let seta_direita = document.querySelector(".image-slider .seta-direita");
+        let indicators = document.querySelectorAll(".image-slider .indicators .indicator");
+
+        let slide_atual = 0;
+        
+        function passar_slide_direita() {
+            slides[slide_atual].className = "slide meio-esquerda";
+            indicators[slide_atual].classList.remove("active");
+            slide_atual += 1;
+            // if(slide_atual>=slides.length){
+            //     slide_atual=0;
+            // }
+            slide_atual = slide_atual % slides.length;
+
+            slides[slide_atual].className = "slide direita-meio";
+            console.log(slide_atual);
+            indicators[slide_atual].classList.add("active");
+        }
+
+        seta_direita.addEventListener("click", passar_slide_direita);
+
+        function voltar_slide() {
+
+            slides[slide_atual].className = "slide meio-direita";
+
+            indicators[slide_atual].classList.remove("active");
+            slide_atual -= 1;
+            if (slide_atual < 0) {
+                slide_atual = slides.length - 1;
+            }
+            slides[slide_atual].className = "slide esquerda-meio"
+            indicators[slide_atual].classList.add("active");
+
+        }
+
+        seta_esquerda.addEventListener("click", voltar_slide)
+
+    </script>
+</body>
+
+</html>

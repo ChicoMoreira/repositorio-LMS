@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZAP3</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="nomeSite">Zap3 oficial</div>
+            <div class="nomeLogin"></div>
+        </div>
+        <div class="pagina">
+            <div class="containerGrupos">
+                <div class="listagrupos"></div>
+                <form action="">
+                    <input type="text" class="novoGrupo" placeholder="novo grupo">
+                    <input type="submit" class="submitNovoGrupo" value="ok">
+                </form>
+            </div>
+            <div class="containerMensagens"></div>
+        </div>
+    </div>
+    <div class="overlayLogin">
+        <div class="overlayModalLogin">
+            <div>Login</div>
+            <form action="">
+                <input type="text" class="nomeUsuario" placeholder="Insira seu nome">
+                <input type="submit" value="Submeter" class="enviarNome">
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

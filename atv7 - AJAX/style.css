@@ -1,0 +1,135 @@
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            height: 700px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pagina {
+            display: flex;
+            justify-content: center;
+            width: 100vw;
+            margin-top: 40px;
+        }
+
+        .listagrupos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+            width: 100%;
+        }
+
+        .cardgrupo {
+            width: 85%;
+            height: 50px;
+            background-color: firebrick;
+            border: 0.8px black solid;
+            margin: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cardgrupo:hover {
+            padding: 5px;
+            border: 1px black solid;
+            background-color: blueviolet;
+        }
+
+        .imagemgrupo {
+            padding: 10px;
+        }
+
+        .nomegrupo {
+            padding: 10px;
+        }
+
+        .imagem {
+            height: 100%;
+            border-radius: 30px;
+            margin-top: 3px
+        }
+
+        .containerMensagens {
+            top: 40px;
+            width: 700px;
+            background-color: darkorange;
+            flex-shrink: 0;
+        }
+
+        .header {
+            position: absolute;
+            height: 40px;
+            width: 900px;
+            background-color: darksalmon;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nomeSite {
+            padding-left: 10px;
+        }
+
+        .nomeLogin {
+            padding-right: 10px;
+        }
+
+
+        .novoGrupo {
+            background-color: antiquewhite;
+            width: 70%;
+            height: 30px;
+            border: 0.8px black solid;
+            margin: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .containerGrupos {
+            width: 200px;
+            background-color: tomato;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            justify-content: space-between;
+            overflow-y: scroll;
+        }
+
+        .overlayLogin {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 700px;
+
+        }
+
+        .overlayLogin.ativo {
+            height: 0;
+            overflow: hidden;
+        }
+
+
+        .overlayModalLogin {
+            height: 300px;
+            width: 600px;
+            background-color: blueviolet;
+            display: flex;
+            justify-content:space-around;
+            align-items:center;
+            flex-direction: column;
+        }
